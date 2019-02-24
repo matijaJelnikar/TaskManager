@@ -38,6 +38,7 @@ namespace TaskManager.DAL
 
         public void InsertTask(TaskItem Task)
         {
+            Task.DateCreated = DateTime.Now;
             context.TaskItems.Add(Task);
         }
 

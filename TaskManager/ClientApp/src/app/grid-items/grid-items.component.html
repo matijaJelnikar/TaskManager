@@ -13,10 +13,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let taski of tasks">
-      <td>{{ taski.dateCreated }}</td>
+      <td>{{ taski.dateCreated | date: 'dd.MM.yyyy HH:mm' }}</td>
       <td>{{ taski.title }}</td>
       <td>{{ taski.description }}</td>
-      <td>{{ taski.dueDate }}</td>
+      <td>{{ taski.dueDate | date: 'dd.MM.yyyy HH:mm' }}</td>
       <td> <button (click)="deleteTask(taski)"> Delete </button> </td>
     </tr>
   </tbody>
