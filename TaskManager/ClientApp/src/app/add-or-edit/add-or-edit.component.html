@@ -1,0 +1,44 @@
+<h1>Add / Update item</h1>
+
+<br />
+<div>
+  <div class="row">
+    <div class="col-sm-4">
+      <label>Title: </label>
+    </div>
+    <div>
+    </div>
+    <div class="col-sm-4">
+      <input name="title" type="text" id="model-input" [(ngModel)]="taskItem.title" placeholder="Enter Title">
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-sm-4">
+      <label>Description: </label>
+    </div>
+    <div class="col-sm-4">
+      <input name="description" type="text" id="model-input" [(ngModel)]="taskItem.description" placeholder="Enter description">
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-sm-4">
+      <label>Due date: </label>
+    </div>
+    <div class="col-sm-4">
+      <input name="dueDate" type="datetime" id="model-input" [(ngModel)]="taskItem.dueDate" placeholder="Enter due date">
+    </div>
+  </div>
+  <br />
+
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-5">
+      <button type="button" class="btn btn-primary" (click)="addtaskItem($event);">Add</button>
+    </div>
+    <div class="col-sm-4">
+    </div>
+  </div>
+</div>  

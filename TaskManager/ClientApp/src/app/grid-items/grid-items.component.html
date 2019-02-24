@@ -1,0 +1,22 @@
+<hr>
+
+<p *ngIf="!tasks"><em>Loading...</em></p>
+
+<table class='table' *ngIf="tasks">
+  <thead>
+    <tr>
+      <th>Date created</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Due date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let taski of tasks">
+      <td>{{ taski.dateCreated }}</td>
+      <td>{{ taski.title }}</td>
+      <td>{{ taski.description }}</td>
+      <td>{{ taski.dueDate }}</td>
+    </tr>
+  </tbody>
+</table>
