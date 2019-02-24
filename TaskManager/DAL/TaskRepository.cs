@@ -21,10 +21,14 @@ namespace TaskManager.DAL
 
         public IEnumerable<TaskItem> GetTasks()
         {
-            context.TaskItems.Add(new TaskItem { ID = 1, DateCreated = DateTime.Now, Title = "Moj prvi Task", Description = "Naredi še unit of work", DueDate = DateTime.Now.AddDays(7) });
-            context.TaskItems.Add(new TaskItem { ID = 2, DateCreated = DateTime.Now, Title = "Moj drugi Task", Description = "Naredi še kaj", DueDate = DateTime.Now.AddDays(14) });
-            context.TaskItems.Add(new TaskItem { ID = 3, DateCreated = DateTime.Now, Title = "Moj tretji Task", Description = "Prenegaj z delom", DueDate = DateTime.Now.AddDays(21) });
-            return context.TaskItems.Local.ToList();
+            if (context.TaskItems.Count() == 0) {
+                context.TaskItems.Add(new TaskItem { ID = null, DateCreated = DateTime.Now.AddDays(-24), Title = "Wake up", Description = "First sample task", DueDate = DateTime.Now.AddDays(7) });
+                context.TaskItems.Add(new TaskItem { ID = null, DateCreated = DateTime.Now.AddDays(-10), Title = "Do your best", Description = "Second sample task", DueDate = DateTime.Now.AddDays(14) });
+                context.TaskItems.Add(new TaskItem { ID = null, DateCreated = DateTime.Now, Title = "Go to sleep", Description = "Third sample task", DueDate = DateTime.Now.AddDays(21) });
+                context.SaveChanges();
+            }
+           
+            return context.TaskItems.ToList();
         }
 
         public TaskItem GetTaskByID(int id)
@@ -37,7 +41,7 @@ namespace TaskManager.DAL
             context.TaskItems.Add(Task);
         }
 
-        public void DeleteTask(int TaskID)
+        public void DeleteTask(int? TaskID)
         {
             TaskItem Task = context.TaskItems.Find(TaskID);
             context.TaskItems.Remove(Task);

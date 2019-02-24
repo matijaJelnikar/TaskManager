@@ -1,9 +1,9 @@
 <div>
-  <app-add-or-edit (taskCreated)="createItem()"></app-add-or-edit>
+  <app-add-or-edit (taskCreated)="createItem($event)"></app-add-or-edit>
 </div>
 
 <div>
-  <app-grid-items [tasks]="tasks"></app-grid-items>
+  <app-grid-items [tasks]="tasks" (taskDeleted)="deleteClicked($event)"></app-grid-items>
 </div>
 
 

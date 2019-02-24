@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { AddOrEditComponent } from './add-or-edit/add-or-edit.component';
 import { GridItemsComponent } from './grid-items/grid-items.component';
 import { TaskManagerComponent } from './task-manager/task-manager.component';
+import { HttpModule } from '@angular/http';
+import { RestService } from './rest.service';
+
 
 
 @NgModule({
@@ -26,6 +29,7 @@ import { TaskManagerComponent } from './task-manager/task-manager.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    HttpModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'add-or-edit', component: AddOrEditComponent },
@@ -33,7 +37,9 @@ import { TaskManagerComponent } from './task-manager/task-manager.component';
       { path: 'task-manager', component: TaskManagerComponent }
     ])
   ],
-  providers: [],
+  providers: [
+    RestService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,24 +13,24 @@ namespace taskManager.Controllers
 {
     [Produces("application/json")]
     [Route("api/taskItems")]
-    public class taskItemsController : Controller
+    public class TaskItemsController : Controller
     {
         private TaskRepository _taskRepository;
-        public taskItemsController(TaskManagerContext context)
+        public TaskItemsController(TaskManagerContext context)
         {
             this._taskRepository = new TaskRepository(context);
         }
 
         // GET: api/taskItems
         [HttpGet]
-        public IEnumerable<TaskItem> GettaskItems()
+        public IEnumerable<TaskItem> GetTaskItems()
         {
             return _taskRepository.GetTasks();
         }
 
         // GET: api/taskItems/5
         [HttpGet("{id}")]
-        public IActionResult GettaskItem([FromRoute] int id)
+        public IActionResult GetTaskItem([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +49,7 @@ namespace taskManager.Controllers
 
         // PUT: api/taskItems/5
         [HttpPut("{id}")]
-        public IActionResult PuttaskItem([FromRoute] int id, [FromBody] TaskItem taskItem)
+        public IActionResult PutTaskItem([FromRoute] int id, [FromBody] TaskItem taskItem)
         {
             if (!ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace taskManager.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!taskItemExists(id))
+                if (!TaskItemExists(id))
                 {
                     return NotFound();
                 }
@@ -83,7 +83,7 @@ namespace taskManager.Controllers
 
         // POST: api/taskItems
         [HttpPost]
-        public IActionResult PosttaskItem([FromBody] TaskItem taskItem)
+        public IActionResult PostTaskItem([FromBody] TaskItem taskItem)
         {
             if (!ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace taskManager.Controllers
 
         // DELETE: api/taskItems/5
         [HttpDelete("{id}")]
-        public IActionResult DeletetaskItem([FromRoute] int id)
+        public IActionResult DeleteTaskItem([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -122,7 +122,7 @@ namespace taskManager.Controllers
             return Ok(taskItem);
         }
 
-        private bool taskItemExists(int id)
+        private bool TaskItemExists(int id)
         {
             if (_taskRepository.GetTaskByID(id) == null)
             {

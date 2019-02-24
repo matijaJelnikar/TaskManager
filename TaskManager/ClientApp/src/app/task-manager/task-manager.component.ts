@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RestService } from '../rest.service';
 
 @Component({
     selector: 'app-task-manager',
@@ -9,49 +10,34 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 /** task-manager component*/
 export class TaskManagerComponent implements OnInit {
-  public tasks: TaskItem[];
-  private _http: Http;
-  private _baseUrl: string;
-  private headers: HttpHeaders;
+  public tasks: any[];
+  public errorMessage: string;
 
-  /** taskManager ctor */
-  constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
-    this._http = http;
-    this._baseUrl = baseUrl;
-    this.headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    http.get(baseUrl + 'api/taskItems').subscribe(result => {
-      this.tasks = result.json() as TaskItem[];
-    }, error => console.error(error));
-    console.log("refreshed list of tasks")
+  constructor(private _restService: RestService) {
+    _restService.get().subscribe((data: any) => this.tasks = data);
   }
 
   public createItem(item: any) {
     console.log("createItem fired")
-    //let itemWithId;
-   // this._http.post(this._baseUrl + 'api/taskItems/', item, { headers: this.headers, withCredentials: true });
 
-    //itemWithId = _.find(this.itemsData, (el => el.id === item.id));
+    this._restService.add(item).subscribe(
+            itemRecord => this.tasks.push(item)
+    );
+  };
 
-    //if (itemWithId) {
-    //    const updateIndex = _.findIndex(this.itemsData, { id: itemWithId.id });
-    //    this.listInteracionservice.update(item).subscribe(
-    //        itemRecord => this.itemsData.splice(updateIndex, 1, item)
-    //    );
-    //} else {
-    //    this.listInteracionservice.add(item).subscribe(
-    //        itemRecord => this.itemsData.push(item)
-    //    );
-    //}
-
-    //this.currentItem = this.setInitialValuesForItemsData();
+  public deleteClicked(record) {
+    console.log("deleteItem fired")
+    const deleteIndex = this.tasks.indexOf(record);
+    this._restService.remove(record).subscribe((res: any) => this.tasks.splice(deleteIndex, 1));
+   
   };
 
   ngOnInit() {
   }
+
 }
 
 interface TaskItem {
-  id: number;
   dateCreated: Date;
   title: string;
   description: string;

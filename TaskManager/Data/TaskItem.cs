@@ -7,7 +7,7 @@ namespace TaskManager.Data
 {
     public class TaskItem
     {
-        public int ID { get; set; }
+        public int? ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
