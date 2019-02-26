@@ -15,6 +15,7 @@ export class TaskManagerComponent implements OnInit {
 
   constructor(private _restService: RestService) {
     _restService.get().subscribe((data: any) => this.tasks = data);
+
   }
 
   public createItem(item: any) {
@@ -31,6 +32,8 @@ export class TaskManagerComponent implements OnInit {
     this._restService.remove(record).subscribe((res: any) => this.tasks.splice(deleteIndex, 1));
    
   };
+
+
 
   ngOnInit() {
   }
