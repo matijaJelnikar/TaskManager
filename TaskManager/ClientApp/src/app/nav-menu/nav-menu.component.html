@@ -14,13 +14,15 @@
           <ul class='nav navbar-nav'>
             <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
               <a [routerLink]='["/"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-home'></span> Home
+                <span class='glyphicon glyphicon-home'></span><p i18n>Home</p>
               </a>
             </li>
 
             <li [routerLinkActive]="['link-active']">
               <a [routerLink]="['/task-manager']">
-                <span class='glyphicon glyphicon-th-list'></span> Manage tasks
+                <div style="display:inline-block">
+                  <span class='glyphicon glyphicon-th-list'></span><p i18n>Manage tasks</p>
+                </div>
               </a>
             </li>
           </ul>

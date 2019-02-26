@@ -12,8 +12,9 @@ import { GridItemsComponent } from './grid-items/grid-items.component';
 import { TaskManagerComponent } from './task-manager/task-manager.component';
 import { HttpModule } from '@angular/http';
 import { RestService } from './rest.service';
-
-
+//import { TRANSLATIONS, TRANSLATIONS_FORMAT } from '@angular/core';
+//import { I18n } from '@ngx-translate/i18n-polyfill';
+//const translations = require(`raw-loader!../locale/messages.fr.xlf`);
 
 @NgModule({
   declarations: [
@@ -37,8 +38,12 @@ import { RestService } from './rest.service';
       { path: 'task-manager', component: TaskManagerComponent }
     ])
   ],
+
   providers: [
     RestService
+    //I18n,
+    //{ provide: TRANSLATIONS, useValue: translations },
+    //{ provide: TRANSLATIONS_FORMAT, useValue: 'xlf' },
   ],
   bootstrap: [AppComponent]
 })

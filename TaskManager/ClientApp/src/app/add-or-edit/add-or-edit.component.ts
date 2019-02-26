@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { getLocaleDateTimeFormat } from '@angular/common';
+
 
 @Component({
     selector: 'app-add-or-edit',
@@ -7,7 +9,7 @@ import { Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 })
 /** add-or-edit component*/
 export class AddOrEditComponent implements OnInit {
-  public taskItem: any;
+  public taskItem: TaskItem;
   //@Input() taskItem: any;
   @Output() taskCreated = new EventEmitter<any>();
 
@@ -16,6 +18,7 @@ export class AddOrEditComponent implements OnInit {
   }
 
   public addtaskItem() {
+    this.taskItem.dateCreated = new Date();
     this.taskCreated.emit(this.taskItem);
     this.inittaskItem();
   };
@@ -23,14 +26,23 @@ export class AddOrEditComponent implements OnInit {
   public inittaskItem() {
     this.taskItem = {
       id: undefined,
+      dateCreated: null,
       title: "",
       description: "",
-      dueDate: undefined
+      dueDate: null
     };
   }
 
 
   ngOnInit() {
   }
+}
+
+interface TaskItem {
+  id: number;
+  dateCreated: Date;
+  title: string;
+  description: string;
+  dueDate: Date;
 }
 
