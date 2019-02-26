@@ -4,11 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class RestService {
   private headers: HttpHeaders;
-  private accessPointUrl: string = 'https://localhost:44365/api/taskItems';
+  private accessPointUrl: string = '';
 
   constructor(private http: HttpClient) {
     //; charset=utf-8
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.accessPointUrl = getBaseUrl().toString() + 'api/taskItems';
   }
 
   public get() {
