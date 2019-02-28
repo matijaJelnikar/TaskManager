@@ -15,14 +15,13 @@ export class TaskManagerComponent implements OnInit {
 
   constructor(private _restService: RestService) {
     _restService.get().subscribe((data: any) => this.tasks = data);
-
   }
 
   public createItem(item: any) {
     console.log("createItem fired")
 
     this._restService.add(item).subscribe(
-            itemRecord => this.tasks.push(item)
+            item => this.tasks.push(item)
     );
   };
 
@@ -38,11 +37,4 @@ export class TaskManagerComponent implements OnInit {
   ngOnInit() {
   }
 
-}
-
-interface TaskItem {
-  dateCreated: Date;
-  title: string;
-  description: string;
-  dueDate: Date;
 }
