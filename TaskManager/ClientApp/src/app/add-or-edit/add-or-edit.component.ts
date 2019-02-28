@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { getLocaleDateTimeFormat } from '@angular/common';
+import { not } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -10,7 +11,6 @@ import { getLocaleDateTimeFormat } from '@angular/common';
 /** add-or-edit component*/
 export class AddOrEditComponent implements OnInit {
   public taskItem: TaskItem;
-  //@Input() taskItem: any;
   @Output() taskCreated = new EventEmitter<any>();
 
   constructor() {
@@ -18,9 +18,13 @@ export class AddOrEditComponent implements OnInit {
   }
 
   public addtaskItem() {
-    this.taskItem.dateCreated = new Date();
-    this.taskCreated.emit(this.taskItem);
-    this.inittaskItem();
+    if (this.taskItem.dueDate != null && this.taskItem.title != "" && this.taskItem.description != "") {
+        this.taskItem.dateCreated = new Date();
+        this.taskCreated.emit(this.taskItem);
+        this.inittaskItem();
+    }
+    else
+      alert("Cannot add task item! please fill all the fields and retry ...")  
   };
 
   public inittaskItem() {

@@ -1,7 +1,7 @@
 <h1>Add / Update item</h1>
 
 <br />
-<div>
+<form>
   <div class="row">
     <div class="col-sm-4">
       <label>Title: </label>
@@ -27,7 +27,8 @@
       <label>Due date: </label>
     </div>
     <div class="col-sm-4">
-      <input name="dueDate" type="date" id="model-input" [(ngModel)]="taskItem.dueDate" placeholder="Enter due date">
+      <input name="dueDate" type="date" id="model-input" [(ngModel)]="taskItem.dueDate" placeholder="Enter due date"
+             #name="ngModel" required >
     </div>
   </div>
   <br />
@@ -37,4 +38,4 @@
       <button type="button" class="btn btn-primary" (click)="addtaskItem();">Add</button>
     </div>
   </div>
-</div>  
+</form>  
